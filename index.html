@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MGPT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="theme-color" content="#101113">
+    <link rel="icon" type="image/svg+xml" href="assets/mgpt-mark.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+
+        <!-- ============ Sidebar ============ -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-head">
+                <h1 class="wordmark">
+                    <img class="brand-symbol" src="assets/mgpt-mark.svg" alt="" width="30" height="30">
+                    <img class="brand-type" src="assets/mgpt-wordmark.svg" alt="MGPT" width="120" height="22">
+                </h1>
+                <button class="icon-btn" id="navHide" aria-label="Hide history" title="Hide history">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg>
+                </button>
+            </div>
+            <button class="new-chat" id="newChatBtn">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                New chat
+            </button>
+
+            <div class="sidebar-scroll">
+                <div class="sidebar-search">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                    <input type="search" id="chatSearch" placeholder="Search chats — press /" aria-label="Search chats">
+                </div>
+                <p class="rail-label">History</p>
+                <ul class="chat-list" id="chatList"></ul>
+                <p class="empty-note" id="historyEmpty">Your conversations will appear here.</p>
+            </div>
+
+            <div class="sidebar-foot">
+                <button class="ghost-btn" id="settingsBtn">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6h.09A1.65 1.65 0 0 0 10 3.09V3a2 2 0 0 1 4 0v.09A1.65 1.65 0 0 0 15 4.6a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9v.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    Settings
+                </button>
+                <a class="privacy-link" href="privacy.html" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6z"/><path d="m8 12 3 3 5-6"/></svg>
+                    Privacy<span class="sr-only"> (opens in a new tab)</span>
+                </a>
+            </div>
+        </aside>
+        <div class="scrim" id="scrim" hidden></div>
+
+        <!-- ============ Main ============ -->
+        <main class="main">
+            <button class="nav-show" id="navShow" aria-label="Show history" title="Show history">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg>
+            </button>
+
+            <header class="topbar">
+                <button class="icon-btn" id="menuBtn" aria-label="Open history" aria-expanded="false">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+                </button>
+                <button class="model-button" id="modelButton" aria-haspopup="dialog">
+                    <span class="model-indicator" aria-hidden="true"></span>
+                    <span id="activeModel">Choose a model</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
+                </button>
+                <span class="topbar-note">Your space to think</span>
+                <button class="icon-btn" id="newChatBtnMobile" aria-label="New chat">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                </button>
+            </header>
+
+            <!-- Welcome -->
+            <section class="welcome" id="welcome">
+                <div class="welcome-brand" aria-label="MGPT">
+                    <img class="brand-symbol" src="assets/mgpt-mark.svg" alt="" width="64" height="64">
+                    <img class="brand-type" src="assets/mgpt-wordmark.svg" alt="MGPT" width="204" height="36">
+                </div>
+                <h2 class="welcome-mark">Where should we start?</h2>
+                <p class="welcome-line">Think it through. Make something. Find your next idea.</p>
+                <ul class="starters" id="starters">
+                    <li><button class="starter" data-prompt="Help me brainstorm ideas for "><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M8.5 14.5a6 6 0 1 1 7 0L15 17H9z"/></svg><span>Explore an idea<small>Give a thought somewhere to go</small></span></button></li>
+                    <li><button class="starter" data-prompt="Review this code for bugs and tell me what you'd change:"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-14-2 18"/></svg><span>Build something<small>Work through code together</small></span></button></li>
+                    <li><button class="starter" data-prompt="Summarize the key points of the file I'm attaching."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h5"/></svg><span>Find the essentials<small>Make sense of a document</small></span></button></li>
+                </ul>
+            </section>
+
+            <!-- Messages -->
+            <div class="thread" id="thread" hidden>
+                <div class="thread-inner" id="messages" aria-live="polite" aria-relevant="additions"></div>
+            </div>
+
+            <!-- Composer -->
+            <div class="composer-wrap" id="composerWrap">
+                <div class="composer" id="composer">
+                    <ul class="chips" id="chips" hidden></ul>
+                    <div class="compare-bar" id="compareBar" hidden>
+                        <div class="compare-head">
+                            <p class="compare-note">Compare replies side by side — each column can use a different model:</p>
+                            <button class="compare-add" id="compareAdd" type="button">+ Column</button>
+                        </div>
+                        <div class="compare-cols" id="compareCols"></div>
+                    </div>
+                    <div class="composer-row">
+                        <button class="icon-btn attach" id="attachBtn" aria-label="Attach a file" title="Attach a file">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+                        </button>
+                        <input type="file" id="fileInput" multiple hidden
+                               accept=".txt,.md,.markdown,.json,.csv,.tsv,.log,.yml,.yaml,.xml,.html,.css,.js,.jsx,.ts,.tsx,.py,.rb,.go,.rs,.java,.c,.h,.cpp,.cs,.php,.sh,.sql,image/*">
+                        <button class="icon-btn compare-btn" id="compareBtn" aria-pressed="false" aria-label="Compare models" title="Compare models side by side">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="7" height="14" rx="1.5"/><rect x="14" y="5" width="7" height="14" rx="1.5"/></svg>
+                        </button>
+                        <label class="sr-only" for="input">Message</label>
+                        <textarea id="input" class="input" rows="1" placeholder="Ask anything, or drop a file…"></textarea>
+                        <button class="send" id="sendBtn" aria-label="Send message">
+                            <svg class="i-send" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+                            <svg class="i-stop" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="1.5"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <p class="rail" id="rail"><span class="dot" id="railDot"></span><span id="railText">Ready</span></p>
+            </div>
+        </main>
+    </div>
+
+    <!-- ============ Settings ============ -->
+    <div class="modal" id="settingsModal" hidden>
+        <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+            <header class="sheet-head">
+                <h2 id="settingsTitle">Settings</h2>
+                <button class="icon-btn" id="closeModal" aria-label="Close settings">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+            </header>
+
+            <nav class="tabs" role="tablist">
+                <button class="tab is-on" role="tab" aria-selected="true"  aria-controls="tab-conn" id="tabBtnConn">Connection</button>
+                <button class="tab"       role="tab" aria-selected="false" aria-controls="tab-inst" id="tabBtnInst">Instructions</button>
+            </nav>
+
+            <div class="sheet-body">
+                <!-- Connection -->
+                <section id="tab-conn" role="tabpanel" aria-labelledby="tabBtnConn">
+                    <div class="field">
+                        <label id="profilesLabel">Profiles</label>
+                        <ul class="profile-list" id="profileList" aria-labelledby="profilesLabel"></ul>
+                        <div class="preset-row">
+                            <button class="preset" id="addProfile">New profile</button>
+                        </div>
+                        <p class="hint">Each profile keeps its own endpoint, key and model. Click one to edit it; saving makes it the profile that answers your messages.</p>
+                    </div>
+
+                    <div class="field">
+                        <label for="profileName">Profile name</label>
+                        <input type="text" id="profileName" spellcheck="false" maxlength="40" placeholder="DeepSeek, OpenRouter, local…">
+                        <p class="hint">Just a label — pick anything that reminds you what this connection is.</p>
+                    </div>
+
+                    <div class="field">
+                        <label for="apiEndpoint">API endpoint</label>
+                        <input type="text" id="apiEndpoint" spellcheck="false" placeholder="https://api.deepseek.com/v1/chat/completions">
+                        <p class="hint">Any OpenAI-compatible endpoint. Presets:</p>
+                        <div class="preset-row" id="presets">
+                            <button class="preset" data-endpoint="https://api.deepseek.com/v1/chat/completions" data-model="deepseek-flash">DeepSeek</button>
+                            <button class="preset" data-endpoint="https://api.openai.com/v1/chat/completions" data-model="">OpenAI</button>
+                            <button class="preset" data-endpoint="https://openrouter.ai/api/v1/chat/completions" data-model="">OpenRouter</button>
+                            <button class="preset" data-endpoint="http://localhost:11434/v1/chat/completions" data-model="">Ollama</button>
+                            <button class="preset" data-endpoint="http://localhost:1234/v1/chat/completions" data-model="">LM Studio</button>
+                            <button class="preset" data-endpoint="http://localhost:8080/v1/chat/completions" data-model="">llama.cpp</button>
+                            <button class="preset" data-endpoint="http://localhost:8000/v1/chat/completions" data-model="">vLLM</button>
+                        </div>
+                        <p class="hint">A bare host works too — <code>localhost:8080</code> becomes the full path when you save.</p>
+                    </div>
+
+                    <div class="field">
+                        <label for="apiKey">API key</label>
+                        <div class="with-affix">
+                            <input type="password" id="apiKey" autocomplete="off" spellcheck="false" placeholder="Paste your key">
+                            <button class="affix" id="toggleApiKey" aria-label="Show API key">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                        <p class="hint">Stored in this browser only, and sent only to this profile's endpoint. Local endpoints don't need one.</p>
+                    </div>
+
+                    <div class="field">
+                        <label for="modelSelect">Model</label>
+                        <!-- Beside the input, not over it: input[list] draws its own
+                             dropdown chevron at the right edge, and an overlaid
+                             button would cover it. -->
+                        <div class="with-side">
+                            <input type="text" id="modelSelect" list="modelList" spellcheck="false" placeholder="Choose a model or enter its ID" aria-describedby="modelHint">
+                            <button class="side-btn" id="refreshModels" aria-label="Load models from endpoint" title="Load models from endpoint">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 2v6h-6M3 22v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L21 8M21 15a9 9 0 0 1-14.85 3.36L3 16"/></svg>
+                            </button>
+                        </div>
+                        <datalist id="modelList"></datalist>
+                        <p class="hint" id="modelHint">Type a model name, or load the list from your endpoint.</p>
+                    </div>
+
+                    <div class="model-browser" id="modelBrowser" hidden>
+                        <div class="browser-controls">
+                            <input type="search" id="modelSearch" placeholder="Search models…" aria-label="Search models">
+                            <label class="check">
+                                <input type="checkbox" id="freeOnly">
+                                <span>Free only</span>
+                            </label>
+                        </div>
+                        <p class="hint" id="keyInfo" hidden></p>
+                        <ul class="model-rows" id="modelRows"></ul>
+                        <p class="hint" id="browserHint"></p>
+                    </div>
+                </section>
+
+                <!-- Instructions -->
+                <section id="tab-inst" role="tabpanel" aria-labelledby="tabBtnInst" hidden>
+                    <p class="hint tall">Markdown files that tell MGPT how to behave. Every enabled file is prepended to each conversation as a system prompt.</p>
+
+                    <ul class="inst-list" id="instList"></ul>
+                    <p class="empty-note" id="instEmpty">No instruction files yet.</p>
+
+                    <div class="preset-row">
+                        <button class="preset" id="addInstFile">Upload .md</button>
+                        <button class="preset" id="addInstWrite">Write one</button>
+                        <input type="file" id="instFileInput" accept=".md,.markdown,.txt" multiple hidden>
+                    </div>
+
+                    <div class="inst-editor" id="instEditor" hidden>
+                        <div class="field">
+                            <label for="instName">Name</label>
+                            <input type="text" id="instName" placeholder="tone.md" spellcheck="false">
+                        </div>
+                        <div class="field">
+                            <label for="instBody">Content</label>
+                            <textarea id="instBody" rows="8" placeholder="You are a terse senior engineer. Skip preamble. Show code first."></textarea>
+                        </div>
+                        <div class="preset-row">
+                            <button class="preset" id="instSave">Save file</button>
+                            <button class="preset" id="instCancel">Cancel</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <footer class="sheet-foot">
+                <button class="btn ghost" id="cancelBtn">Cancel</button>
+                <button class="btn primary" id="saveBtn">Save settings</button>
+            </footer>
+        </div>
+    </div>
+
+    <div class="toasts" id="toasts" aria-live="assertive"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

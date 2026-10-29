@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101113">
+    <meta name="description" content="How MGPT handles your chats, local browser storage, and connections to your chosen AI provider.">
+    <title>Privacy · MGPT</title>
+    <link rel="icon" type="image/svg+xml" href="assets/mgpt-mark.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="privacy-page">
+    <header class="privacy-header">
+        <a class="wordmark" href="index.html" aria-label="MGPT home">
+            <img class="brand-symbol" src="assets/mgpt-mark.svg" alt="" width="30" height="30">
+            <img class="brand-type" src="assets/mgpt-wordmark.svg" alt="MGPT" width="120" height="22">
+        </a>
+        <a class="privacy-back" href="index.html">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6-6 6 6 6M4 12h16"/></svg>
+            Back to chat
+        </a>
+    </header>
+
+    <main class="privacy-content">
+        <div class="privacy-intro">
+            <p class="privacy-label">Privacy</p>
+            <h1>Your chats stay yours.</h1>
+            <p class="privacy-lead">We don’t collect your conversations, sell your personal data, or use your content to train AI models.</p>
+            <p class="privacy-date">Last updated <time datetime="2026-10-26">26 October 2026</time></p>
+        </div>
+
+        <div class="privacy-summary">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6z"/><path d="m8 12 3 3 5-6"/></svg>
+            <p>No analytics, advertising trackers, or tracking cookies. Your messages go directly to the AI endpoint you choose.</p>
+        </div>
+
+        <section aria-labelledby="device-heading">
+            <h2 id="device-heading">What stays in your browser</h2>
+            <p>MGPT saves your conversations, sent attachments, instruction files, sidebar preference, and your provider profiles — each with its own endpoint, model, and API key — in your browser’s local storage. When you use an OpenRouter profile, a cached copy of its public model list (names, prices, context lengths — no personal data) is also stored so the model picker opens instantly. We don’t operate a backend that receives or stores your chats, and MGPT doesn’t sync them to an MGPT account.</p>
+            <p>This storage persists between visits and is not encrypted by MGPT. Someone with access to your browser profile may be able to read it.</p>
+        </section>
+
+        <section aria-labelledby="provider-heading">
+            <h2 id="provider-heading">What your AI provider receives</h2>
+            <p>When you send a message, your browser sends the conversation history, included attachments, and enabled instructions directly to the active profile’s endpoint. An API key you provide is sent to that endpoint for authentication. Opening Settings or refreshing models also contacts that endpoint to load its model list.</p>
+            <p>In compare mode, the same message is sent once per column you picked. Each column targets a profile (with an optional model override) through that profile’s endpoint, and each provider receives it under its own terms. Comparing never shares one provider’s reply with another.</p>
+            <p>The provider’s own privacy and retention policies apply. A hosted provider may store or use your content under its own terms; MGPT doesn’t control that. A model running on your own machine receives requests locally, although its own configuration determines whether it contacts other services.</p>
+        </section>
+
+        <section aria-labelledby="connections-heading">
+            <h2 id="connections-heading">Other connections</h2>
+            <p>The chat interface loads the Manrope typeface from Google Fonts. This connects your browser to Google, which receives connection information such as your IP address. MGPT doesn’t include your chats or API key in those font requests. This privacy page uses system fonts and makes no font requests.</p>
+            <p>If you use a hosted copy of MGPT, its hosting service may keep ordinary access logs, such as IP addresses and page requests. Hosting practices depend on whoever runs that copy.</p>
+        </section>
+
+        <section aria-labelledby="delete-heading">
+            <h2 id="delete-heading">You can remove your data</h2>
+            <p>Delete individual conversations from History. To remove all locally saved MGPT data, clear this site’s data in your browser settings. This removes your saved chats, API key, settings, and instruction files.</p>
+            <p>Clearing browser data doesn’t remove information already sent to an AI provider. Contact that provider or use its privacy controls for any deletion requests.</p>
+        </section>
+    </main>
+
+    <footer class="privacy-footer">
+        <span>MGPT</span>
+        <a href="index.html">Back to chat</a>
+    </footer>
+</body>
+</html>
