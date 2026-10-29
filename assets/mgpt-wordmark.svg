@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 36" fill="#EDEEF0">
+  <g transform="matrix(1 0 -.1 1 4 0)">
+    <path d="M2 32V4h5l16 18L39 4h5v28h-5V12L23 30 7 12v20z"/>
+    <path d="M96 4H62l-7 7v14l7 7h34V17H77v5h14v5H64l-4-4V13l4-4h32z"/>
+    <path fill-rule="evenodd" d="M107 32V4h31l8 8v6l-8 8h-26v6zm5-23v12h24l5-5v-2l-5-5z"/>
+    <path d="M155 4h42v5h-18v23h-5V9h-19z"/>
+  </g>
+</svg>
